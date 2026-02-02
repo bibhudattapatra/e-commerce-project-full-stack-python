@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock %}</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="containte">
+        <a href="{% url 'app1:adminhome' %}">Home</a>
+        <a href="{% url 'app1:adminorderlist' %}">All Orders</a>
+        <a href="{% url 'app1:home' %}" target="blank">Visti site</a>
+
+    </div>
+    {% block content %}
+
+    {% endblock %}
+</body>
+</html>
