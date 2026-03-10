@@ -1,5 +1,68 @@
 {% extends "base.html" %}
-{% block title %}About{% endblock%}
+
+{% block title %}About Us{% endblock %}
+
 {% block content %}
-     <h1>about page</h1>
+
+<div class="container mt-5">
+
+    <!-- Page Title -->
+    <div class="text-center mb-4">
+        <h2 class="fw-bold text-primary">About Us</h2>
+        <p class="text-muted">Learn more about our company and services</p>
+        <hr class="w-25 mx-auto">
+    </div>
+
+    <!-- About Content -->
+    <div class="row align-items-center">
+
+        <!-- Image -->
+        <div class="col-md-6 text-center">
+            <img src="https://cdn-icons-png.flaticon.com/512/4320/4320337.png"
+                 class="img-fluid"
+                 style="max-height:300px;">
+        </div>
+
+        <!-- Text -->
+        <div class="col-md-6">
+
+            <h4 class="fw-semibold">Jay Durga Distributors</h4>
+
+            <p class="text-muted">
+                Jay Durga Distributors is a trusted medical distributor providing
+                high-quality medicines and healthcare products. Our goal is to
+                ensure fast, reliable, and affordable delivery of medical supplies.
+            </p>
+
+            <p class="text-muted">
+                We provide a wide range of products including tablets, syrups,
+                injections, and healthcare essentials from trusted companies.
+            </p>
+
+            <ul class="list-group list-group-flush">
+
+                <li class="list-group-item">
+                    ✔ Trusted Medical Distributor
+                </li>
+
+                <li class="list-group-item">
+                    ✔ High Quality Products
+                </li>
+
+                <li class="list-group-item">
+                    ✔ Fast Delivery
+                </li>
+
+                <li class="list-group-item">
+                    ✔ Customer Satisfaction
+                </li>
+
+            </ul>
+
+        </div>
+
+    </div>
+
+</div>
+
 {% endblock %}

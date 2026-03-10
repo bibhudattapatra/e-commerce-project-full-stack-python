@@ -1,48 +1,130 @@
 {% extends "base.html" %}
 
-{% block title %} Checkout {% endblock %}
+{% block title %}Checkout{% endblock %}
 
 {% block content %}
-<div class="container">
-    <div class="row">
-        <div class="col-md-6">
-            <h3>Items in the cart</h3>
-            <a href="{% url 'app1:mycart' %}">Update Cart</a>
-             <table class="table">
-                <thead>
-                    <th>S No</th>
-                    <th>Product</th>
-                    <th>Rate</th>
-                    <th>Quantity</th>
-                    <th>Subtotal</th>
-                    
 
-                </thead>
-                <tbody>
-                    {% for cp in  cart.cartproduct_set.all %}
-                    <tr>
-                        <td>{{forloop.counter }}</td>
-                        <td>{{cp.product.title}}</td>
-                        <td>{{cp.rate}}</td>
-                        <td>{{cp.quantity}}</td>
-                        <td>{{cp.subtotal}}</td>
-                    </tr>
-                    {% endfor %}
-                    <tr>
-                        <th colspan="4" class="text-right">Total</th>
-                        <th> Rs.{{ cart.total }}</th>
-                    </tr>
-                </tbody>
-            </table>
+<div class="container mt-5">
+
+    <h2 class="text-center text-primary fw-bold mb-4">
+        Checkout
+    </h2>
+
+    <div class="row g-4">
+
+        <!-- Cart Items Section -->
+        <div class="col-md-7">
+
+            <div class="card shadow-sm border-0">
+
+                <div class="card-header bg-primary text-white">
+                    <h5 class="mb-0">Items in Your Cart</h5>
+                </div>
+
+                <div class="card-body">
+
+                    <a href="{% url 'app1:mycart' %}"
+                       class="btn btn-sm btn-outline-primary mb-3">
+
+                        Update Cart
+
+                    </a>
+
+                    <div class="table-responsive">
+
+                        <table class="table table-hover align-middle">
+
+                            <thead class="table-light">
+                                <tr>
+                                    <th>#</th>
+                                    <th>Product</th>
+                                    <th>Rate</th>
+                                    <th>Qty</th>
+                                    <th>Subtotal</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+
+                                {% for cp in cart.cartproduct_set.all %}
+
+                                <tr>
+                                    <td>{{ forloop.counter }}</td>
+
+                                    <td class="fw-semibold">
+                                        {{ cp.product.title }}
+                                    </td>
+
+                                    <td>₹{{ cp.rate }}</td>
+
+                                    <td>{{ cp.quantity }}</td>
+
+                                    <td class="fw-bold text-success">
+                                        ₹{{ cp.subtotal }}
+                                    </td>
+
+                                </tr>
+
+                                {% endfor %}
+
+                                <!-- Total Row -->
+                                <tr class="table-info">
+
+                                    <th colspan="4" class="text-end">
+                                        Total Amount
+                                    </th>
+
+                                    <th class="text-success fs-5">
+                                        ₹{{ cart.total }}
+                                    </th>
+
+                                </tr>
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+                </div>
+
+            </div>
+
         </div>
-        <div class="col-md-6">
-            <h3>Checkout Form</h3>
-            <form action="" method="post">
-            {% csrf_token %}
-            {{form.as_p}}
-            <button class="btn btn-info">place order</button>
-            </form>
+
+        <!-- Checkout Form Section -->
+        <div class="col-md-5">
+
+            <div class="card shadow-sm border-0">
+
+                <div class="card-header bg-success text-white">
+                    <h5 class="mb-0">Shipping Details</h5>
+                </div>
+
+                <div class="card-body">
+
+                    <form method="post">
+
+                        {% csrf_token %}
+
+                        {{ form.as_p }}
+
+                        <button class="btn btn-success w-100 mt-3">
+
+                            Place Order
+
+                        </button>
+
+                    </form>
+
+                </div>
+
+            </div>
+
         </div>
+
     </div>
+
 </div>
+
 {% endblock %}

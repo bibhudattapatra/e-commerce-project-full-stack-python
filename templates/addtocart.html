@@ -1,9 +1,61 @@
 {% extends "base.html" %}
 
-{% block title %} Add to cart {% endblock %}
+{% block title %}Product Added{% endblock %}
 
 {% block content %}
-<div class="container">
-    <h3>successfully product is added to cart</h3>
+
+<div class="container mt-5">
+
+    <div class="row justify-content-center">
+
+        <div class="col-md-6">
+
+            <div class="card shadow border-0 text-center">
+
+                <div class="card-body p-5">
+
+                    <!-- Success Icon -->
+                    <div class="mb-3">
+                        <span style="font-size:60px;">✅</span>
+                    </div>
+
+                    <!-- Message -->
+                    <h4 class="text-success fw-bold mb-3">
+                        Product Added to Cart Successfully!
+                    </h4>
+
+                    <p class="text-muted">
+                        Your product has been added to your cart.
+                        You can continue shopping or go to your cart.
+                    </p>
+
+                    <!-- Buttons -->
+                    <div class="d-grid gap-2 mt-4">
+
+                        <a href="{% url 'app1:allproducts' %}"
+                           class="btn btn-primary">
+
+                            Continue Shopping
+
+                        </a>
+
+                        <a href="{% url 'app1:mycart' %}"
+                           class="btn btn-success">
+
+                            View Cart
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
 </div>
+
 {% endblock %}

@@ -1,52 +1,152 @@
 {% extends "base.html" %}
-{% block title %} My Cart {% endblock %}
+{% block title %}My Cart{% endblock %}
+
 {% block content %}
-<div class="container">
-    <div class="row">
-        <div class="col-md-3">
-            <h4>My Cart Items</h4>
-            <table class="table">
-                <thead>
-                    <th>S No</th>
-                    <th>Product</th>
-                    <th>Rate</th>
-                    <th>Quantity</th>
-                    <th>Subtotal</th>
-                    <th>Action</th>
 
-                </thead>
-                <tbody>
-                    {% for cp in  cart.cartproduct_set.all %}
-                    <tr>
-                        <td>{{forloop.counter }}</td>
-                        <td>{{cp.product.title}}</td>
-                        <td>{{cp.rate}}</td>
-                        <td>{{cp.quantity}}</td>
-                        <td>{{cp.subtotal}}</td>
-                        <td>
-                            <a href="{% url 'app1:managecart' cp.id %}?action=inc" class="btn btn-primary "></a>
-                            <a href="{% url 'app1:managecart' cp.id %}?action=dec" class="btn btn-warning"></a>
-                            <a href="{% url 'app1:managecart' cp.id %}?action=rmv" class="btn btn-danger"></a>
-                        </td>
-                    </tr>
-                    {% endfor %}
-                    <tr>
-                        <th colspan="4" class="text-right">Total </th>
-                        <th>Rs.{{cart.total}}</th>
-                        {% if cart.cartproduct_set.all %}
-                        <th><a href="{% url 'app1:emptycart' %}"> Empty Cart</a></th>
-                        {% endif %}
-                    </tr>
-                    {% if cart.cartproduct_set.all %}
-                    <tr>
-                        <th> <a class="btn btn-info"  href="{% url 'app1:checkout' %}"> Checkout</a></th>
-                    </tr>
-                     {% endif %}
+<div class="container mt-5">
 
-                </tbody>
-            </table>
+    <h2 class="text-center text-primary mb-4">
+        🛒 My Shopping Cart
+    </h2>
+
+    {% if cart.cartproduct_set.all %}
+
+    <div class="card shadow-sm">
+
+        <div class="card-body">
+
+            <div class="table-responsive">
+
+                <table class="table table-hover align-middle">
+
+                    <thead class="table-dark">
+
+                        <tr>
+                            <th>#</th>
+                            <th>Product</th>
+                            <th>Image</th>
+                            <th>Rate</th>
+                            <th>Quantity</th>
+                            <th>Subtotal</th>
+                            <th>Action</th>
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+
+                        {% for cp in cart.cartproduct_set.all %}
+
+                        <tr>
+
+                            <td>{{ forloop.counter }}</td>
+
+                            <td class="fw-semibold">
+                                {{ cp.product.title }}
+                            </td>
+
+                            <td>
+                                <img src="{{ cp.product.image.url }}"
+                                     width="60"
+                                     height="60"
+                                     style="object-fit:contain;">
+                            </td>
+
+                            <td class="text-success fw-bold">
+                                ₹{{ cp.rate }}
+                            </td>
+
+                            <td>
+
+                                <a href="{% url 'app1:managecart' cp.id %}?action=dec"
+                                   class="btn btn-warning btn-sm">
+                                   −
+                                </a>
+
+                                <span class="mx-2 fw-bold">
+                                    {{ cp.quantity }}
+                                </span>
+
+                                <a href="{% url 'app1:managecart' cp.id %}?action=inc"
+                                   class="btn btn-success btn-sm">
+                                   +
+                                </a>
+
+                            </td>
+
+                            <td class="fw-bold text-primary">
+                                ₹{{ cp.subtotal }}
+                            </td>
+
+                            <td>
+
+                                <a href="{% url 'app1:managecart' cp.id %}?action=rmv"
+                                   class="btn btn-danger btn-sm">
+                                   Remove
+                                </a>
+
+                            </td>
+
+                        </tr>
+
+                        {% endfor %}
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
         </div>
 
     </div>
+
+    <!-- Total Section -->
+
+    <div class="row mt-4">
+
+        <div class="col-md-6">
+            <a href="{% url 'app1:emptycart' %}"
+               class="btn btn-outline-danger">
+               Empty Cart
+            </a>
+        </div>
+
+        <div class="col-md-6 text-end">
+
+            <h4>
+                Total:
+                <span class="text-success fw-bold">
+                    ₹{{ cart.total }}
+                </span>
+            </h4>
+
+            <a href="{% url 'app1:checkout' %}"
+               class="btn btn-primary mt-2">
+               Proceed to Checkout
+            </a>
+
+        </div>
+
+    </div>
+
+    {% else %}
+
+    <!-- Empty Cart -->
+
+    <div class="alert alert-warning text-center">
+
+        <h4>Your cart is empty 😔</h4>
+
+        <a href="{% url 'app1:home' %}"
+           class="btn btn-primary mt-2">
+           Continue Shopping
+        </a>
+
+    </div>
+
+    {% endif %}
+
 </div>
+
 {% endblock %}

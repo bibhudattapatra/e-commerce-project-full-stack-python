@@ -1,5 +1,105 @@
 {% extends "base.html" %}
-{% block title %}contact us{% endblock %}
+
+{% block title %}Contact Us{% endblock %}
+
 {% block content %}
-    <h1> this is the contactus page</h1>
+
+<div class="container mt-5">
+
+    <!-- Title -->
+    <div class="text-center mb-4">
+        <h2 class="fw-bold text-primary">Contact Us</h2>
+        <p class="text-muted">We are here to help you</p>
+        <hr class="w-25 mx-auto">
+    </div>
+
+    <div class="row">
+
+        <!-- Contact Info -->
+        <div class="col-md-5">
+
+            <div class="card shadow-sm border-0">
+                <div class="card-body">
+
+                    <h5 class="fw-bold mb-3">Contact Information</h5>
+
+                    <p>
+                        📍 <strong>Address:</strong><br>
+                        Jay Durga Distributors,<br>
+                        puri,Odisha,India
+                    </p>
+
+                    <p>
+                        📞 <strong>Phone:</strong><br>
+                        +91 9876543210
+                    </p>
+
+                    <p>
+                        📧 <strong>Email:</strong><br>
+                        jaydurgadistributors@gmail.com
+                    </p>
+
+                    <p>
+                        🕒 <strong>Working Hours:</strong><br>
+                        Mon – Sat : 9 AM – 8 PM
+                    </p>
+
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Contact Form -->
+        <div class="col-md-7">
+
+            <div class="card shadow-sm border-0">
+                <div class="card-body">
+
+                    <h5 class="fw-bold mb-3">Send Message</h5>
+
+                    <form method="POST">
+                        {% csrf_token %}
+
+                        <div class="mb-3">
+                            <label class="form-label">Full Name</label>
+                            <input type="text"
+                                   class="form-control"
+                                   placeholder="Enter your name"
+                                   required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Email</label>
+                            <input type="email"
+                                   class="form-control"
+                                   placeholder="Enter your email"
+                                   required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Message</label>
+                            <textarea class="form-control"
+                                      rows="4"
+                                      placeholder="Enter your message"
+                                      required></textarea>
+                        </div>
+
+                        <button type="submit"
+                                class="btn btn-primary w-100">
+
+                            Send Message
+
+                        </button>
+
+                    </form>
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
 {% endblock %}

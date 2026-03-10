@@ -30,4 +30,43 @@ urlpatterns=[
     path("admin-all-orders/",AdminOrderListView.as_view(),name="adminorderlist"),
     path("admin-order-<int:pk>-change",AdminOrderStatusChangeView.as_view(),name="adminorderstatuschange"),
 
+    # # api url
+    # # PRODUCTS
+    # path("api_products/", ProductListAPI.as_view()),
+    # path("products/<slug:slug>/", ProductDetailAPI.as_view()),
+
+    # # CATEGORIES
+    # path("categories/", MedicineCategoryAPI.as_view()),
+
+    # # SEARCH
+    # path("search/", MedicineSearchAPI.as_view()),
+
+    # # CART
+    # path("cart/", MyCartAPI.as_view()),
+    # path("cart/add/", AddToCartAPI.as_view()),
+
+    # # ORDER / CHECKOUT
+    # path("checkout/", CheckoutAPI.as_view()),
+
+
+
+    # Company Category
+    path('api_company-category/', CompanyCategoryListView.as_view()),
+    path('api_id_company-category/<int:pk>/', CompanyCategoryDetailView.as_view()),
+
+    # Medicine Category
+    path('api_medicine-category/', MedicineCategoryListView.as_view()),
+    path('api_id_medicine-category/<int:pk>/', MedicineCategoryDetailView.as_view()),
+
+    # Product
+    path('api_products/', MedicineProductListView.as_view()),
+    path('api_id_products/<int:pk>/', MedicineProductDetailView.as_view()),
+
+    # Cart
+    path('api_cart/', CartListView.as_view()),
+    path('api_id_cart/<int:pk>/', CartDetailView.as_view()),
+
+    # Order
+    path('api_orders/', OrderListView.as_view()),
+    path('api_orders/<int:pk>/', OrderDetailView.as_view()),
 ]
